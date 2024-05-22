@@ -1,10 +1,20 @@
 Elementos para el desarrollo de Vehiculo Autónomo
+
+
 ![image](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/efd5039a-c48c-4896-9af5-6b82946d3841)
+
+
+
 Sensor de fuerza piezo resistivo 10g a 1000g
 Sensor de fuerza piezo resistivo, el cual se implementa en pinzas robóticas o sistemas de peso electrónico para saber cuánta fuerza o presión se está ejerciendo, la señal de salida es un cambio de resistencia, y entre más se presione menor sera la resistencia, ¡¡se puede adaptar fácilmente a sistemas como Arduino
 Ecuación
 Kilogramo-fuerza =   Newtons
+
+
 ![image](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/b36bd8e3-9248-4864-84f9-a4323b23c449)
+
+
+
 Características
 Peso sensado 0.1-9.8N
 Largo: 5.2cm
@@ -14,6 +24,10 @@ Tipo de salida: 2 pines varia la resistencia
 
 
 ![image](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/a5ba482b-14e9-4565-baa9-1d1e6e488139)
+
+
+
+
 El sensor TCRT5000 es un sensor infrarrojo que consta de un diodo emisor de luz infrarroja y un fototransistor sensible a la luz infrarroja. Este sensor es muy utilizado en proyectos de detección de objetos, ya que es capaz de detectar la presencia de objetos opacos a la luz infrarroja a una distancia de hasta 1 cm, o para detectar contrastes como en el caso de un robot seguidor de linea
 
 Características:
@@ -25,7 +39,13 @@ Calibración: potenciómetro
 distancia de detección: 1 cm
 Led de detección: si
 
+
+
 ![image](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/a7222e71-2189-41ed-9008-de423fe9b7aa)
+
+
+
+
 Sensor ultrasónico Ref HC-SR04 marca Genérica para medir distancia, detectar objetos
 El HC-SR04 es un sensor ultrasónico de línea económica que puedes usar para medir distancia, es recomendable para aplicaciones académicas donde requieras trabajar con Arduino o sistemas similares
 
