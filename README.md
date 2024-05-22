@@ -76,6 +76,9 @@ Comunicación: I2C
 Compatible librería Arduino
 
 ![image](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/53fa1538-5e54-4a9d-8de0-1a665658aa3e)
+
+
+
 Board puente H L298 marca Genérica para control motores
 Este controlador es ideal para diseños académicos donde se quiere controlar un motor o dos motores DC, esta board es compatible con Arduino o sistemas similares
 
