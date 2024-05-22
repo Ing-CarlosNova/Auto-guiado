@@ -59,6 +59,9 @@ Angulo de detección: 15° aproximadamente.
 Tipo de señal de salida: Digital.
 
 ![image](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/e407cd07-edbe-4b31-b4c2-a5a48212efe3)
+
+
+
 El display LCD 2×16 con conexión I2C es un componente que te permite visualizar información de forma clara y sencilla en tus proyectos. esta LCD tiene soldado el controlador I2C, lo que te permite ahorrar pines en tu proyecto. Además, es compatible con muchas librerías. Con su forma compacta y su capacidad de mostrar hasta 32 caracteres en dos líneas, es una opción ideal para proyectos de pequeña escala.
 
 Características
