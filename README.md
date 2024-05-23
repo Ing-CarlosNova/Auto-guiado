@@ -97,7 +97,7 @@ Tamaño: 76mm * 44mm * 26mm
 
 
 Simulación Thinkercad:
-https://www.tinkercad.com/things/6M01rZBBtwk-copy-of-undecimo/editel?sharecode=ny11cBkw5IJLmaULP9QWOo1YS7JejxDTx0KsJgGB4Dg
 
 Simulación de Evasor de Obstaculos con Interrupciones
-https://www.tinkercad.com/things/lnS3gLotW7o-evasor-de-obstaculos
+https://www.tinkercad.com/things/lnS3gLotW7o-evasor-de-obstaculos?sharecode=9m478K4AdZ9hDG4MCgDQKTh78QYl6QmP7EFP44kt72A
+
