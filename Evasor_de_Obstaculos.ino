@@ -22,22 +22,25 @@ void loop() {
     Serial.print("Distancia: ");
     Serial.print(distance);
     Serial.println("cm");
-    if (distance<=8) { // Distancia limite para evasión de obstáculos
-      MOTOR1(0,0,0);
-      MOTOR2(0,0,0);
-      delay(700);//Pausa para ajuste de giro
-      MOTOR1(192,1,0);
-      MOTOR2(192,1,0);
+    if (distance<=15) { // Distancia limite para evasión de obstáculos
+      SPEED_MOTOR();//Función para reducir la velocidad del motor.
+      if(distance<=8)
+      {
+      delay(2000);//Pausa para ajuste de giro a 90º
+      MOTOR1(191,0,0);
+      MOTOR2(191,1,0);
+      delay(700);//Pausa para ir adelante
+      MOTOR1(226,0,1);
+      MOTOR2(226,0,1);
       delay(700);
-      MOTOR1(192,0,1);
-      MOTOR2(192,0,1);
-      delay(700);
-      MOTOR1(192,1,0);
-      MOTOR2(192,1,0);
+      MOTOR1(191,0,1);
+      MOTOR2(191,0,0);
+      }
     } 
     else {
-      MOTOR1(255,1,0);
-      MOTOR2(255,1,0);
+     //Avance hacia adelante del motor, cuando no existe obstaculo 89% PWM.
+      MOTOR1(120,1,0);
+      MOTOR2(120,1,0);
     }
     State = false;
   }
@@ -78,4 +81,16 @@ void MOTOR2 (int PWM,bool IN3,bool IN4)
 digitalWrite(6,IN3);
 digitalWrite(7,IN4);
 analogWrite(5,PWM);
+}
+//
+void SPEED_MOTOR()
+{
+ int s;
+ for (s=120;s>=0;s--)
+ {
+ MOTOR1(s,0,1);
+ MOTOR2(s,0,1);
+ delay(16);
+ }
+   
 }
