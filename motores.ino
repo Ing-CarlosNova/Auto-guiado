@@ -14,7 +14,12 @@ pinMode(7,OUTPUT);//IN4
 }
 
 void loop() {
-
+MOTOR1(255,1,0);
+MOTOR2(255,1,0);
+delay(500);
+MOTOR1(255,0,1);
+MOTOR2(255,0,1);
+delay(500);
  
 
 }
