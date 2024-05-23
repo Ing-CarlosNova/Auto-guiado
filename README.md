@@ -93,7 +93,9 @@ Tamaño: 76mm * 44mm * 26mm
 
 
 
+Consumo de energía y tiempo de baterias
 
+![Captura de pantalla 2024-05-23 074518](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/0d3e3cf7-5146-4f17-b627-cba1f3e5b3e5)
 
 
 Simulación Thinkercad:
