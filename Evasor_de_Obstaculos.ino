@@ -26,8 +26,14 @@ void loop() {
       MOTOR1(0,0,0);
       MOTOR2(0,0,0);
       delay(700);//Pausa para ajuste de giro
-      MOTOR1(125,1,0);
-      MOTOR2(125,1,0);
+      MOTOR1(192,1,0);
+      MOTOR2(192,1,0);
+      delay(700);
+      MOTOR1(192,0,1);
+      MOTOR2(192,0,1);
+      delay(700);
+      MOTOR1(192,1,0);
+      MOTOR2(192,1,0);
     } 
     else {
       MOTOR1(255,1,0);
