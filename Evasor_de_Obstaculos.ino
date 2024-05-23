@@ -1,3 +1,8 @@
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
+//Crear el objeto lcd  dirección  0x3F y 16 columnas x 2 filas
+LiquidCrystal_I2C lcd(0x20,16,2);  //
+
 volatile long time;
 volatile bool State = false;
 long distance;
@@ -12,6 +17,12 @@ void setup() {
   pinMode(8, OUTPUT);//TRIG
   Serial.begin(9600);
   attachInterrupt(digitalPinToInterrupt(2), echoISR, CHANGE);
+   // Inicializar el LCD
+  lcd.init();
+  //Encender la luz de fondo.
+  lcd.backlight();
+  // Escribimos el Mensaje en el LCD.
+  lcd.print("Hola Mundo");
 }
 
 void loop() {
@@ -23,6 +34,10 @@ void loop() {
     Serial.print(distance);
     Serial.println("cm");
     if (distance<=15) { // Distancia limite para evasión de obstáculos
+      int cont+=1;
+      lcd.setCursor(0, 1);
+      lcd.print("#Obj:");
+      lcd.print(cont);
       SPEED_MOTOR();//Función para reducir la velocidad del motor.
       if(distance<=8)
       {
