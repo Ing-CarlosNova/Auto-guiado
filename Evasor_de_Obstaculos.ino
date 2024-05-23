@@ -3,6 +3,7 @@
 //Crear el objeto lcd  dirección  0x3F y 16 columnas x 2 filas
 LiquidCrystal_I2C lcd(0x20,16,2);  //
 
+int cont=0;
 volatile long time;
 volatile bool State = false;
 long distance;
@@ -34,7 +35,7 @@ void loop() {
     Serial.print(distance);
     Serial.println("cm");
     if (distance<=15) { // Distancia limite para evasión de obstáculos
-      int cont+=1;
+      cont++;
       lcd.setCursor(0, 1);
       lcd.print("#Obj:");
       lcd.print(cont);
@@ -107,5 +108,4 @@ void SPEED_MOTOR()
  MOTOR2(s,0,1);
  delay(16);
  }
-   
 }
