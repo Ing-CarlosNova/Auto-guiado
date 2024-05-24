@@ -3,10 +3,10 @@
 
 
 //Crear el objeto lcd  dirección  0x3F y 16 columnas x 2 filas
-LiquidCrystal_I2C lcd(0x20,16,2);  //
+LiquidCrystal_I2C lcd(0x20,16,2);  //Configuración de la LCD con I2C
 void SEGUIDOR();
 int cont=0;
-volatile long time,time2;
+volatile long time,time2;//
 volatile bool State = false;
 long distance;
 bool s1,s2,s3,s4;//Variables de los sensores
