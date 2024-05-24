@@ -1,6 +1,17 @@
-volatile long time;
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+
+//Crear el objeto lcd  dirección  0x3F y 16 columnas x 2 filas
+LiquidCrystal_I2C lcd(0x20,16,2);  //
+void SEGUIDOR();
+int cont=0;
+volatile long time,time2;
 volatile bool State = false;
 long distance;
+bool s1,s2,s3,s4;//Variables de los sensores
+unsigned long start_time2;
+float peso;
 void setup() {
   pinMode(9,OUTPUT);//IN1
   pinMode(3,OUTPUT);//PWM MOTOR 1
@@ -10,8 +21,18 @@ void setup() {
   pinMode(7,OUTPUT);//IN4
   pinMode(2, INPUT);//ECHO-INTERRUPCIÓN
   pinMode(8, OUTPUT);//TRIG
+  pinMode(10,INPUT);//Sensor Derecha
+  pinMode(11,INPUT);//Sensor Centro Derecha
+  pinMode(12,INPUT);//Sensor Centro Izquierda 
+  pinMode(13,INPUT);//Sensor Izquierda
   Serial.begin(9600);
   attachInterrupt(digitalPinToInterrupt(2), echoISR, CHANGE);
+   // Inicializar el LCD
+  lcd.init();
+  //Encender la luz de fondo.
+  lcd.backlight();
+  // Escribimos el Mensaje en el LCD.
+  lcd.print("Hola Mundo");
 }
 
 void loop() {
@@ -23,6 +44,10 @@ void loop() {
     Serial.print(distance);
     Serial.println("cm");
     if (distance<=15) { // Distancia limite para evasión de obstáculos
+      cont++;
+      lcd.setCursor(0, 1);
+      lcd.print("#Obj:");
+      lcd.print(cont);
       SPEED_MOTOR();//Función para reducir la velocidad del motor.
       if(distance<=8)
       {
@@ -36,11 +61,18 @@ void loop() {
       MOTOR1(191,0,1);
       MOTOR2(191,0,0);
       }
+    peso=SENSOR_MF01();//Calculo de peso con la ecuación m=f/a y a=9.8 m/s^2
+    Serial.print("Peso=");
+  	Serial.println(peso);
     } 
     else {
      //Avance hacia adelante del motor, cuando no existe obstaculo 89% PWM.
-      MOTOR1(120,1,0);
-      MOTOR2(120,1,0);
+      //MOTOR1(120,1,0);
+      //MOTOR2(120,1,0);
+      SEGUIDOR();
+      peso=SENSOR_MF01();//Calculo de peso con la ecuación m=f/a y a=9.8 m/s^2
+      Serial.print("Peso=");
+  	  Serial.println(peso);
     }
     State = false;
   }
@@ -92,5 +124,58 @@ void SPEED_MOTOR()
  MOTOR2(s,0,1);
  delay(16);
  }
-   
 }
+void SEGUIDOR()
+{
+
+s1=digitalRead(10);//Derecha
+s2=digitalRead(11);//Centro Derecha
+s3=digitalRead(12);//Centro Izquierda
+s4=digitalRead(13);//Izquierda
+if((s1==0)&&(s2==1)&&(s3==1)&&(s4==0))
+{
+ start_time2=millis();
+  //Medición de peso
+ delay(7000);
+ //Robot en Linea Recta
+ MOTOR1(120,1,0);
+ MOTOR2(120,1,0);
+}
+    else
+    {
+     	if((s1==0)&&(s2==1)&&(s3==0)&&(s4==0))
+        {
+         //Corrección de Giro a la Derecha
+         MOTOR1(191,0,0);
+      	 MOTOR2(191,1,0);
+         delay(400);
+        }
+      	else
+        {
+       		if((s1==0)&&(s2==0)&&(s3==1)&&(s4==0))
+            {
+            //Corrección de Giro a la Derecha
+        	 MOTOR1(191,1,0);
+      	 	 MOTOR2(191,0,0); 
+             delay(400);
+            }
+          	else
+            {
+           		if((s1==0)&&(s2==0)&&(s3==0)&&(s4==0))
+            	{
+            	//Avanzar cuando los sensores esten todos
+                // en blanco
+        	 	SPEED_MOTOR();
+                }
+              	else
+                {
+                MOTOR1(0,0,0);
+      	 	 	MOTOR2(0,0,0);
+                time2=millis()-start_time2;
+                }
+            } 
+         }
+      }
+}
+
+//Espacio para el sensor de fuerza.
