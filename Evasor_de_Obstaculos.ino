@@ -42,21 +42,28 @@ void loop() {
       SPEED_MOTOR();//Función para reducir la velocidad del motor.
       if(distance<=8)
       {
-      delay(1000);//Pausa para ajuste de giro a 90º
-      MOTOR1(191,0,0);
-      MOTOR2(191,1,0);
+      delay(1000);//Pausa para ajuste de giro a 90º DERECHA
+      MOTOR1(200,0,1);
+      MOTOR2(200,0,0);
       delay(1000);//Pausa para ir adelante
-      MOTOR1(226,1,0);
-      MOTOR2(226,1,0);
+      MOTOR1(200,1,0);  //ADELANTE
+      MOTOR2(200,1,0);
       delay(1000);
-      MOTOR1(191,1,0);
-      MOTOR2(191,0,0);
+      MOTOR1(200,0,0); // IZQUIERAD
+      MOTOR2(200,0,1);
+      delay(1000);
+      MOTOR1(200,0,0); // IZQUIERAD
+      MOTOR2(200,0,1);
+      delay(1000);
+      MOTOR1(200,1,0);
+      MOTOR2(200,1,0);
+      delay(1000);
       }
     } 
     else {
      //Avance hacia adelante del motor, cuando no existe obstaculo 89% PWM.
-      MOTOR1(120,1,0);
-      MOTOR2(120,1,0);
+      MOTOR1(180,1,0);
+      MOTOR2(180,1,0);
     }
     State = false;
   }
