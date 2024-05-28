@@ -5,10 +5,30 @@ Elementos para el desarrollo de Vehiculo Autónomo
 
 
 
-Sensor de fuerza piezo resistivo 10g a 1000g
-Sensor de fuerza piezo resistivo, el cual se implementa en pinzas robóticas o sistemas de peso electrónico para saber cuánta fuerza o presión se está ejerciendo, la señal de salida es un cambio de resistencia, y entre más se presione menor sera la resistencia, ¡¡se puede adaptar fácilmente a sistemas como Arduino
-Ecuación
-Kilogramo-fuerza =   Newtons
+El sensor de fuerza o presión mf01 autoadherible para Arduino es ideal para detectar una fuerza aplicada en la membrana. Básicamente, al detectar una flexión en la membrana el sensor cambia su resistencia interna. Este sensor esta fabricado de 2 capas separadas por un espaciador, cuanto más se presiona, por ejemplo, más puntos de elemento activo tocan el semiconductor. Por lo tanto, esto hace que la resistencia disminuya. Cuando no es presionado, su resistencia es de aproximadamente 20 MΩ. Su rango de presión varía de 30 gramos a 1 Kg. Por lo que basta con ponerlo en un divisor de tensión, para poder medir la salida en voltaje con algún ADC.
+
+Estos sensor de fuerza son de bajo costo, funciona con cualquier tarjeta de desarrollo o microcontrolador con etapa de ADC. Tiene una extensión que termina en dos puntas que se pueden soldar cómodamente. Es muy sencillo de utilizar y puede tener multitud de aplicaciones en muchos proyectos electrónicos. Sirve para la mayoría de las aplicaciones sensibles al tacto. Puede utilizar cualquier fuente de alimentación ya que utiliza menos de 1 mA de corriente. En resumen, con este dispositivo podemos medir una fuerza proporcional a la presión generada sobre el sensor.
+
+Estos sensores son raramente precisos. Así que, básicamente, cuando se utiliza este sensor sólo se debe esperar para obtener “rangos” de respuesta. Tal sensor de fuerza pueden detectar el peso, pero son una mala elección para detectar exactamente cuántas libras de peso hay en ellos.
+
+Fuerza de actuación: 30g min.
+Rango de sensibilidad: 30 a 10,000g.
+Repetitividad: 5%.
+Resistencia sin carga: 20 MOhms.
+Histéresis: 10%.
+Tiempo de respuesta: <1ms.
+Rango de temperatura: -30ºC a 70ºC.
+Ancho: 0.05 mm.
+Rendimiento: 100 KΩ (presión ligera) a 200Ω (máx. presión)
+Gama Fuerza: 0 a 20 libras (0 a 100 Newtons)
+
+Como hemos dicho, la resistencia del sensor cambia con respecto a presión. Cuando no hay presión, el sensor se parece por lo general a una resistencia infinita (circuito abierto), ya que la presión aumenta, la resistencia disminuye. Este gráfico indica aproximadamente la resistencia del sensor en diferentes mediciones de la fuerza. (Ten en cuenta que la fuerza no se mide en gramos y lo que realmente quiere decir es Newtons * 100) de hecho.
+
+![image](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/d8488389-c540-4f13-81d5-0996fe3763f9)
+
+
+Por otro lado, cabe mencionar que la figura previa es logarítmica en ambos ejes. No obstante el comportamiento se puede considerar una recta, sin embargo no se comporta como tal. Por ese motivo, a continuación se presenta una tabla con valores tomados. Como resultado podemos observar que la variación no es lineal.
+Cabe aclarar que el sensor de fuerza no es recomendable para tomar pesos exactos, pero se puede tener un aproximado, para ello se realiza una ecuación de tendencia que permite realizar ajustes y obetner pesos aproximados. 
 
 
 ![image](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/b36bd8e3-9248-4864-84f9-a4323b23c449)
@@ -121,4 +141,12 @@ Simulación Thinkercad:
 
 Simulación de Evasor de Obstaculos con Interrupciones
 https://www.tinkercad.com/things/lnS3gLotW7o-evasor-de-obstaculos?sharecode=9m478K4AdZ9hDG4MCgDQKTh78QYl6QmP7EFP44kt72A
+
+
+Pasos a tener en cuenta: 
+1- utilizar el programa de motores para verificar los movimientos hacía adelante, átras, derecha e izquierda, la conexión de motores y puertos con la tarjeta de desarrollo.
+2- utilizar el progroma Evasor_de_Obstaculos.ino con este programa se comprueba y se ajusta el sensor ultrasonico con los motores actuales, además de mostrar la cantidad de objetos detectados.
+3- utilizar el programa Sensor_de_linea_negra.ino con este programa se comprueba y se ajusta los sensores infrarojos de piso, lecturas en blanco y negro, además se muestra en la LCD un contador de tiempo.
+4- utilizar el programa sensor_fuerza_peso.ino con este programa  se comprueba y se ajusta el sensor de fuerza y la conversión a peso, mostrando el el dato en la pantalla LCD.
+5- con los ajustes anteriores se crea el código Auto_muestras.ino se donde se integra los anteriores códigos calibrados para su operación. 
 
