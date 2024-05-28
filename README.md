@@ -108,6 +108,15 @@ Diagrama de bloques
 
 
 
+Diseño circuito electrónico Utilizado para las conexciones de los diferentes actuadores, sensores y electrónica utilizada.
+
+![Diseño electronico_page-0001](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/c04eb0fb-12cd-4ba6-9b2b-2d1d9e399891)
+
+
+![Diseño electronico_page-0002](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/2ed8cffd-cbae-4f90-aa66-dbe60f371e1b)
+
+
+
 Simulación Thinkercad:
 
 Simulación de Evasor de Obstaculos con Interrupciones
