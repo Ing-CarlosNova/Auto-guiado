@@ -58,32 +58,32 @@ void SPEED_MOTOR()
 void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
 {
 
-if((st1==0)&&(st2==1)&&(st3==1)&&(st4==0))//Los sensores del medio detectan el color negro.
+if((st1==1)&&(st2==1)&&(st3==1)&&(st4==1))//Los sensores detectan negro avanza
 {
  delay(400);
  //Robot en Linea Recta
- MOTOR1(120,1,0);
- MOTOR2(120,1,0);
+ MOTOR1(180,1,0);
+ MOTOR2(180,1,0);
 }
     else
     {
-     	if((st1==0)&&(st2==1)&&(st3==0)&&(st4==0))//Curva a la derecha-Sensor Central Derecho Detecta Unicamente
+     	if((st1==0)&&(st2==1)&&(st3==1)&&(st4==1))//Curva a la izquierda
         {
          //Corrección de Giro a la Derecha
          MOTOR1(191,0,0);
-      	 MOTOR2(191,1,0);
+      	 MOTOR2(191,0,1);
          delay(400);
         }
       	else
         {
-       		if((st1==0)&&(st2==0)&&(st3==1)&&(st4==0))//Curva a la izquierda-Sensor Central Izquierdo Detecta Unicamente
+       		if((st1==1)&&(st2==1)&&(st3==1)&&(st4==0))//Curva a la derecha
             {
             //Corrección de Giro a la Izquierdo
-        	 MOTOR1(191,1,0);
+        	 MOTOR1(191,0,1);
       	 	 MOTOR2(191,0,0); 
              delay(400);
             }
-          	else
+          	/*else
             {
            		if((st1==1)&&(st2==1)&&(st3==1)&&(st4==1))//Todos los sensores detectan el color negro.
             	{
@@ -95,7 +95,7 @@ if((st1==0)&&(st2==1)&&(st3==1)&&(st4==0))//Los sensores del medio detectan el c
                 {
                 MOTOR1(0,0,0);//Variaciones errones que detectan los sensores.
       	 	 	MOTOR2(0,0,0);
-                }
+                }*/
             } 
          }
       }
