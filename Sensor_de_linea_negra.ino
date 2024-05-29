@@ -62,7 +62,7 @@ if((st1==1)&&(st2==1)&&(st3==1)&&(st4==1))//Los sensores detectan negro avanza
 {
  delay(400);
  //Robot en Linea Recta
- MOTOR1(180,1,0);
+ MOTOR1(160,1,0);
  MOTOR2(180,1,0);
 }
     else
@@ -74,7 +74,7 @@ if((st1==1)&&(st2==1)&&(st3==1)&&(st4==1))//Los sensores detectan negro avanza
       	 MOTOR2(191,0,1);
          delay(400);
         }
-      	else
+      	/*else
         {
        		if((st1==1)&&(st2==1)&&(st3==1)&&(st4==0))//Curva a la derecha
             {
@@ -96,8 +96,8 @@ if((st1==1)&&(st2==1)&&(st3==1)&&(st4==1))//Los sensores detectan negro avanza
                 MOTOR1(0,0,0);//Variaciones errones que detectan los sensores.
       	 	 	MOTOR2(0,0,0);
                 }
-            } */
-         }
+            } 
+         }*/
       }
 }
 
