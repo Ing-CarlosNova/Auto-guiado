@@ -45,16 +45,7 @@ digitalWrite(7,IN4);
 analogWrite(5,PWM);
 }
 //
-void SPEED_MOTOR()
-{
- int s;
- for (s=120;s>=0;s--)
- {
- MOTOR1(s,0,1);
- MOTOR2(s,0,1);
- delay(16);
- }
-}
+
 void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
 {
 
