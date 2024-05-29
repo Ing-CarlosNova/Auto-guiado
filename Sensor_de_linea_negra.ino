@@ -58,22 +58,21 @@ void SPEED_MOTOR()
 void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
 {
 
-if((st1==1)&&(st2==1)&&(st3==1)&&(st4==1))//Los sensores detectan negro avanza
-{
- delay(400);
- //Robot en Linea Recta
- MOTOR1(180,1,0);
- MOTOR2(180,1,0);
-}
-    else
+  if((st1==1)&&(st2==1)&&(st3==1)&&(st4==1))//Los sensores detectan negro avanza
     {
-     	if((st1==0)&&(st2==1)&&(st3==1)&&(st4==1))//Curva a la izquierda
-        {
-         //Corrección de Giro a la Derecha
-         MOTOR1(180,0,0);
-      	 MOTOR2(180,0,1);
-         delay(400);
-        }
+      //Robot en Linea Recta
+      MOTOR1(180,0,0);
+      MOTOR2(180,0,0);
+      delay(500);
+    }
+  
+  if((st1==0)&&(st2==1)&&(st3==1)&&(st4==1))//Curva a la izquierda
+    {
+     //Corrección de Giro a la Derecha
+     MOTOR1(180,0,0);
+   	 MOTOR2(180,0,1);
+     delay(500);
+    }
       	/*else
         {
        		if((st1==1)&&(st2==1)&&(st3==1)&&(st4==0))//Curva a la derecha
@@ -98,7 +97,7 @@ if((st1==1)&&(st2==1)&&(st3==1)&&(st4==1))//Los sensores detectan negro avanza
                 }
             } 
          }*/
-      }
+      
 }
 
 //Espacio para el sensor de fuerza.
