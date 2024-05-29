@@ -52,8 +52,8 @@ void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
   if((st1==1)&&(st2==1)&&(st3==1)&&(st4==1))//Los sensores detectan negro avanza
     {
       //Robot en Linea Recta
-      MOTOR1(180,0,0);
-      MOTOR2(180,0,0);
+      MOTOR1(180,0,1);
+      MOTOR2(180,0,1);
       delay(500);
     }
   
@@ -64,31 +64,6 @@ void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
    	 MOTOR2(180,0,1);
      delay(500);
     }
-      	/*else
-        {
-       		if((st1==1)&&(st2==1)&&(st3==1)&&(st4==0))//Curva a la derecha
-            {
-            //Corrección de Giro a la Izquierdo
-        	 MOTOR1(191,0,1);
-      	 	 MOTOR2(191,0,0); 
-             delay(400);
-            }
-          	/*else
-            {
-           		if((st1==1)&&(st2==1)&&(st3==1)&&(st4==1))//Todos los sensores detectan el color negro.
-            	{
-            	
-        	 	MOTOR1(0,0,0);
-      	 	 	MOTOR2(0,0,0);
-                }
-              	else
-                {
-                MOTOR1(0,0,0);//Variaciones errones que detectan los sensores.
-      	 	 	MOTOR2(0,0,0);
-                }
-            } 
-         }*/
+      	
       
 }
-
-//Espacio para el sensor de fuerza.
