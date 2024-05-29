@@ -23,15 +23,14 @@ void setup() {
   //Encender la luz de fondo.
   lcd.backlight();
   // Escribimos el Mensaje en el LCD.
-  lcd.print("Hola Mundo");
+  lcd.print("AUTO EVASOR");
 }
 
 void loop() {
   if (State) {
     
     distance = time / 58.2; // Convertir a distancia en cm
-    //Envio de información al monitor serie
- 
+     
     if (distance<=15) { // Distancia limite para evasión de obstáculos
       cont++;
       lcd.setCursor(0, 1);
@@ -40,22 +39,31 @@ void loop() {
       SPEED_MOTOR();//Función para reducir la velocidad del motor.
       if(distance<=8)
       {
-      delay(1000);//Pausa para ajuste de giro a 90º DERECHA
-      MOTOR1(200,0,1);
-      MOTOR2(200,0,0);
-      delay(1000);//Pausa para ir adelante
-      MOTOR1(200,1,0);  //ADELANTE
-      MOTOR2(200,1,0);
-      delay(1000);
-      MOTOR1(200,0,0); // IZQUIERAD
-      MOTOR2(200,0,1);
-      delay(1000);
-      MOTOR1(200,0,0); // IZQUIERAD
-      MOTOR2(200,0,1);
-      delay(1000);
-      MOTOR1(200,1,0);
-      MOTOR2(200,1,0);
-      delay(1000);
+        delay(1000);//Pausa para ajuste de giro a 90º DERECHA 
+        MOTOR1(200,0,1); //MOTOR IZQUIERD
+        MOTOR2(200,0,0); //MOTOR DERECHO
+        delay(1000);//Pausa para ir adelante
+        MOTOR1(200,1,0);  //ADELANTE
+        MOTOR2(200,1,0);
+        delay(1000); //PASUA PARA AJUSTAR 90 A IZQUIERDA
+        MOTOR1(200,0,0); //IZQUIERDO
+        MOTOR2(200,0,1); //DERECHO
+        delay(1000);//Pausa para ir adelante
+        MOTOR1(200,1,0);  //ADELANTE
+        MOTOR2(200,1,0);
+        delay(1000); //PAUSA PAR APARA AJUSTAR 
+        MOTOR1(200,0,0); // IZQUIERADA
+        MOTOR2(200,0,1);
+        delay(1000);
+        MOTOR1(200,1,0); //AVABZAR
+        MOTOR2(200,1,0);
+        delay(1000);//Pausa para ajuste de giro a 90º DERECHA 
+        MOTOR1(200,0,1); //MOTOR IZQUIERD
+        MOTOR2(200,0,0); //MOTOR DERECHO
+        delay(1000);
+        MOTOR1(200,1,0); //AVABZAR
+        MOTOR2(200,1,0);
+
       }
     } 
     else {
