@@ -55,7 +55,7 @@ void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
       MOTOR1(180,1,0);
       MOTOR2(180,1,0);
       delay(500);
-      break;
+     
     }
   
   if((st1==0)&&(st4==1))//Curva a la izquierda
@@ -64,7 +64,7 @@ void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
      MOTOR1(180,0,0);
    	 MOTOR2(180,0,1);
      delay(500);
-     break;
+     
     }
   if((st1==1)&&(st4==0))//Curva a la izquierda
     {
@@ -72,7 +72,7 @@ void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
      MOTOR1(180,0,1);
    	 MOTOR2(180,0,0);
      delay(500);
-     break;
+     
     }  	   
 }
 
