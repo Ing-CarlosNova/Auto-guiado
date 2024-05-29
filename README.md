@@ -24,7 +24,8 @@ Gama Fuerza: 0 a 20 libras (0 a 100 Newtons)
 
 Como hemos dicho, la resistencia del sensor cambia con respecto a presión. Cuando no hay presión, el sensor se parece por lo general a una resistencia infinita (circuito abierto), ya que la presión aumenta, la resistencia disminuye. Este gráfico indica aproximadamente la resistencia del sensor en diferentes mediciones de la fuerza. (Ten en cuenta que la fuerza no se mide en gramos y lo que realmente quiere decir es Newtons * 100) de hecho.
 
-![image](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/d8488389-c540-4f13-81d5-0996fe3763f9)
+![Captura de pantalla 2024-05-29 054218](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/8ec8558c-d0f7-4dbc-b934-8c15bdb62633)
+
 
 
 Por otro lado, cabe mencionar que la figura previa es logarítmica en ambos ejes. No obstante el comportamiento se puede considerar una recta, sin embargo no se comporta como tal. Por ese motivo, a continuación se presenta una tabla con valores tomados. Como resultado podemos observar que la variación no es lineal.
