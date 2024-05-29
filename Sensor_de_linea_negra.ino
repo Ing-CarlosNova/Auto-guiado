@@ -60,8 +60,8 @@ void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
   if((st1==0)&&(st2==1)&&(st3==1)&&(st4==1))//Curva a la izquierda
     {
      //Corrección de Giro a la Derecha
-     MOTOR1(180,0,0);
-   	 MOTOR2(180,0,1);
+     MOTOR1(130,0,0);
+   	 MOTOR2(130,0,1);
      delay(500);
     }
       	
