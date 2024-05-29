@@ -1,7 +1,7 @@
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 //Crear el objeto lcd  dirección  0x3F y 16 columnas x 2 filas
-LiquidCrystal_I2C lcd(0x20,16,2);  //
+LiquidCrystal_I2C lcd(0x27,16,2);  //
 
 int cont=0;
 volatile long time;
@@ -31,9 +31,7 @@ void loop() {
     
     distance = time / 58.2; // Convertir a distancia en cm
     //Envio de información al monitor serie
-    Serial.print("Distancia: ");
-    Serial.print(distance);
-    Serial.println("cm");
+ 
     if (distance<=15) { // Distancia limite para evasión de obstáculos
       cont++;
       lcd.setCursor(0, 1);
