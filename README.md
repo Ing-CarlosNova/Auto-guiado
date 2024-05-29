@@ -171,7 +171,7 @@ Pasos a tener en cuenta:
 
 
 
-4- utilizar el programa sensor_fuerza_peso.ino con este programa  se comprueba y se ajusta el sensor de fuerza y la conversión a peso, mostrando el el dato en la pantalla LCD.
+4- utilizar el programa sensor_fuerza_peso.ino con este programa  se comprueba y se ajusta el sensor de fuerza y la conversión a peso, mostrando el monitor serial.
 
 
 
@@ -179,4 +179,7 @@ Pasos a tener en cuenta:
 
 
 5- con los ajustes anteriores se crea el código Auto_muestras.ino se donde se integra los anteriores códigos calibrados para su operación. 
+
+![7](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/605ff877-3104-48de-be8f-e94bbe07a424)
+
 
