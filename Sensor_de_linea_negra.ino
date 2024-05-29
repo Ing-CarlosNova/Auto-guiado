@@ -95,8 +95,8 @@ if((st1==1)&&(st2==1)&&(st3==1)&&(st4==1))//Los sensores detectan negro avanza
                 {
                 MOTOR1(0,0,0);//Variaciones errones que detectan los sensores.
       	 	 	MOTOR2(0,0,0);
-                }*/
-            } 
+                }
+            } */
          }
       }
 }
