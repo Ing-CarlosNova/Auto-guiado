@@ -48,7 +48,7 @@ void loop(void) {
     } else {
       fsrForce = fsrConductance - 1000;
       fsrForce /= 30;
-      peso = fsrForce*(0.101967564)*1000;
+      peso = fsrForce*(101.97)*1;
       Serial.print("Force in Newtons: ");
       Serial.println(fsrForce); 
       Serial.print("Peso: "); 
