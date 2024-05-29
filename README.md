@@ -147,18 +147,21 @@ Pasos a tener en cuenta:
 
 
 1- utilizar el programa de motores.ino para verificar los movimientos hacía adelante, átras, derecha e izquierda, la conexión de motores y puertos con la tarjeta de desarrollo.
+![1](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/6beb7dfe-f6bb-46d8-b775-b4c26cbc65e0)
+
 
 
 
 
 
 2- utilizar el progroma Evasor_de_Obstaculos.ino con este programa se comprueba y se ajusta el sensor ultrasonico con los motores actuales, además de mostrar la cantidad de objetos detectados.
-
+![3](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/5720dd2f-caf5-4486-a811-6ad2d861dade)
 
 
 
 
 3- utilizar el programa Sensor_de_linea_negra.ino con este programa se comprueba y se ajusta los sensores infrarojos de piso, lecturas en blanco y negro, además se muestra en la LCD un contador de tiempo.
+![2](https://github.com/Ing-CarlosNova/Auto-guiado/assets/15624468/6c8b5047-d482-420d-be4c-7fbe9d5ecfd3)
 
 
 
