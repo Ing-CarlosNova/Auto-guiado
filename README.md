@@ -144,9 +144,33 @@ https://www.tinkercad.com/things/lnS3gLotW7o-evasor-de-obstaculos?sharecode=9m47
 
 
 Pasos a tener en cuenta: 
+
+
 1- utilizar el programa de motores.ino para verificar los movimientos hacía adelante, átras, derecha e izquierda, la conexión de motores y puertos con la tarjeta de desarrollo.
+
+
+
+
+
 2- utilizar el progroma Evasor_de_Obstaculos.ino con este programa se comprueba y se ajusta el sensor ultrasonico con los motores actuales, además de mostrar la cantidad de objetos detectados.
+
+
+
+
+
 3- utilizar el programa Sensor_de_linea_negra.ino con este programa se comprueba y se ajusta los sensores infrarojos de piso, lecturas en blanco y negro, además se muestra en la LCD un contador de tiempo.
+
+
+
+
+
+
 4- utilizar el programa sensor_fuerza_peso.ino con este programa  se comprueba y se ajusta el sensor de fuerza y la conversión a peso, mostrando el el dato en la pantalla LCD.
+
+
+
+
+
+
 5- con los ajustes anteriores se crea el código Auto_muestras.ino se donde se integra los anteriores códigos calibrados para su operación. 
 
