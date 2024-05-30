@@ -40,7 +40,11 @@ void setup() {
 }
 
 void loop() {
-  
+
+  v=digitalRead(s1);//Derecha
+  v1=digitalRead(s2);//centro
+  v2=digitalRead(s3);//centro
+  v3=digitalRead(s4);//izquierda
   if (State) {
     
     distance = time / 58.2; // Convertir a distancia en cm
@@ -91,18 +95,12 @@ void loop() {
   triggerMeasurement();
   delay(100); // Esperar un poco antes de la siguiente medición
 
-  
-  v=digitalRead(s1);//Derecha
-  v1=digitalRead(s2);//centro
-  v2=digitalRead(s3);//centro
-  v3=digitalRead(s4);//izquierda
-
-  /* Serial.println(v);
+   Serial.println(v);
    Serial.println(v1);
    Serial.println(v2);
    Serial.println(v3);
    Serial.println("__");
-   */
+   
   SEGUIDOR(v,v1,v2,v3);
 
 }
