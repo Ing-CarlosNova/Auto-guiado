@@ -84,6 +84,7 @@ void loop() {
      //Avance hacia adelante del motor, cuando no existe obstaculo 89% PWM.
       MOTOR1(180,1,0);
       MOTOR2(180,1,0);
+      SEGUIDOR(v,v1,v2,v3);
     }
     State = false;
   }
@@ -97,7 +98,6 @@ void loop() {
    Serial.println(v3);
    Serial.println("__");
    
-  SEGUIDOR(v,v1,v2,v3);
 
 }
 
