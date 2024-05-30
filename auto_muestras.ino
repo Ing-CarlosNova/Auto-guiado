@@ -53,28 +53,28 @@ void loop() {
       SPEED_MOTOR();//Función para reducir la velocidad del motor.
       if(distance<=8)
       {
-        delay(1000);//Pausa para ajuste de giro a 90º DERECHA 
+        delay(300);//Pausa para ajuste de giro a 90º DERECHA 
         MOTOR1(200,0,1); //MOTOR IZQUIERD
         MOTOR2(200,0,0); //MOTOR DERECHO
-        delay(1000);//Pausa para ir adelante
+        delay(300);//Pausa para ir adelante
         MOTOR1(200,1,0);  //ADELANTE
         MOTOR2(200,1,0);
-        delay(1000); //PASUA PARA AJUSTAR 90 A IZQUIERDA
+        delay(300); //PASUA PARA AJUSTAR 90 A IZQUIERDA
         MOTOR1(200,0,0); //IZQUIERDO
         MOTOR2(200,0,1); //DERECHO
-        delay(1000);//Pausa para ir adelante
+        delay(300);//Pausa para ir adelante
         MOTOR1(200,1,0);  //ADELANTE
         MOTOR2(200,1,0);
-        delay(1000); //PAUSA PAR APARA AJUSTAR 
+        delay(300); //PAUSA PAR APARA AJUSTAR 
         MOTOR1(200,0,0); // IZQUIERADA
         MOTOR2(200,0,1);
-        delay(1000);
+        delay(300);
         MOTOR1(200,1,0); //AVABZAR
         MOTOR2(200,1,0);
-        delay(1000);//Pausa para ajuste de giro a 90º DERECHA 
+        delay(300);//Pausa para ajuste de giro a 90º DERECHA 
         MOTOR1(200,0,1); //MOTOR IZQUIERD
         MOTOR2(200,0,0); //MOTOR DERECHO
-        delay(1000);
+        delay(300);
         MOTOR1(200,1,0); //AVABZAR
         MOTOR2(200,1,0);
 
