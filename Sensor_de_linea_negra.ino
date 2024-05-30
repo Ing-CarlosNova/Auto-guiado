@@ -49,7 +49,7 @@ analogWrite(5,PWM);
 void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
 {
 
-  if((st2==1)&&(st3==1))//Los sensores detectan negro avanza
+  if((st2==true)&&(st3==false))//Los sensores detectan negro avanza
     {
       //Robot en Linea Recta
       MOTOR1(180,1,0);
@@ -58,7 +58,7 @@ void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
      
     }
   
-  if((st1==0)&&(st4==1))//Curva a la izquierda
+  if((st1==false)&&(st4==true))//Curva a la izquierda
     {
      //Corrección de Giro a la Derecha
      MOTOR1(180,0,0);
@@ -66,7 +66,7 @@ void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
      delay(500);
      
     }
-  if((st1==1)&&(st4==0))//Curva a la izquierda
+  if((st1==true)&&(st4==false))//Curva a la izquierda
     {
      //Corrección de Giro a la Derecha
      MOTOR1(180,0,1);
@@ -75,5 +75,3 @@ void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
      
     }  	   
 }
-
-//Espacio para el sensor de fuerza.
