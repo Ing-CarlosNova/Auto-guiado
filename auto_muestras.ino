@@ -9,6 +9,10 @@ volatile long time;
 volatile bool State = false;
 long distance;
 
+
+
+
+
 //,s2,s3,s4;//Variables de los sensores
 void setup() {
   
@@ -36,11 +40,7 @@ void setup() {
 }
 
 void loop() {
-
-  v=digitalRead(s1);//Derecha
-  v1=digitalRead(s2);//centro
-  v2=digitalRead(s3);//centro
-  v3=digitalRead(s4);//izquierda
+  
   if (State) {
     
     distance = time / 58.2; // Convertir a distancia en cm
@@ -53,28 +53,28 @@ void loop() {
       SPEED_MOTOR();//Función para reducir la velocidad del motor.
       if(distance<=8)
       {
-        delay(300);//Pausa para ajuste de giro a 90º DERECHA 
+        delay(1000);//Pausa para ajuste de giro a 90º DERECHA 
         MOTOR1(200,0,1); //MOTOR IZQUIERD
         MOTOR2(200,0,0); //MOTOR DERECHO
-        delay(300);//Pausa para ir adelante
+        delay(1000);//Pausa para ir adelante
         MOTOR1(200,1,0);  //ADELANTE
         MOTOR2(200,1,0);
-        delay(300); //PASUA PARA AJUSTAR 90 A IZQUIERDA
+        delay(1000); //PASUA PARA AJUSTAR 90 A IZQUIERDA
         MOTOR1(200,0,0); //IZQUIERDO
         MOTOR2(200,0,1); //DERECHO
-        delay(300);//Pausa para ir adelante
+        delay(1000);//Pausa para ir adelante
         MOTOR1(200,1,0);  //ADELANTE
         MOTOR2(200,1,0);
-        delay(300); //PAUSA PAR APARA AJUSTAR 
+        delay(1000); //PAUSA PAR APARA AJUSTAR 
         MOTOR1(200,0,0); // IZQUIERADA
         MOTOR2(200,0,1);
-        delay(300);
+        delay(1000);
         MOTOR1(200,1,0); //AVABZAR
         MOTOR2(200,1,0);
-        delay(300);//Pausa para ajuste de giro a 90º DERECHA 
+        delay(1000);//Pausa para ajuste de giro a 90º DERECHA 
         MOTOR1(200,0,1); //MOTOR IZQUIERD
         MOTOR2(200,0,0); //MOTOR DERECHO
-        delay(300);
+        delay(1000);
         MOTOR1(200,1,0); //AVABZAR
         MOTOR2(200,1,0);
 
@@ -92,12 +92,19 @@ void loop() {
   triggerMeasurement();
   delay(100); // Esperar un poco antes de la siguiente medición
 
-   Serial.println(v);
+  
+  v=digitalRead(s1);//Derecha
+  v1=digitalRead(s2);//centro
+  v2=digitalRead(s3);//centro
+  v3=digitalRead(s4);//izquierda
+
+  /* Serial.println(v);
    Serial.println(v1);
    Serial.println(v2);
    Serial.println(v3);
    Serial.println("__");
-   
+   */
+  
 
 }
 
@@ -128,14 +135,14 @@ void SEGUIDOR(int st1, int st2, int st3, int st4)
 {
   if((st1==0)&&(st4==1))//Los sensores del medio detectan el color negro.
     {
-    MOTOR1(150,1,0);
-    MOTOR2(150,0,0);
+    MOTOR1(150,0,0);
+    MOTOR2(150,1,0);
     delay(20);
     }
       else if((st1==1)&&(st4==0))//Los sensores del medio detectan el color negro.
       {
-        MOTOR1(150,0,0);
-        MOTOR2(150,1,0);
+        MOTOR1(150,1,0);
+        MOTOR2(150,0,0);
         delay(20);
       }
       else //Los sensores del medio detectan el color negro.
