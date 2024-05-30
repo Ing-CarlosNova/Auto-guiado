@@ -55,7 +55,7 @@ void SEGUIDOR(int st1,int st2,int st3,int st4)
       //Robot en Linea Recta
       MOTOR1(180,1,0);
       MOTOR2(180,1,0);
-      delay(500);
+      delay(300);
      
     }
   
@@ -64,7 +64,7 @@ void SEGUIDOR(int st1,int st2,int st3,int st4)
      //Corrección de Giro a la Derecha
      MOTOR1(180,0,0);
    	 MOTOR2(180,0,1);
-     delay(500);
+     delay(300);
      
     }
   if((st1==1)&&(st4==0))//Curva a la izquierda
@@ -72,7 +72,7 @@ void SEGUIDOR(int st1,int st2,int st3,int st4)
      //Corrección de Giro a la Derecha
      MOTOR1(180,0,1);
    	 MOTOR2(180,0,0);
-     delay(500);
+     delay(300);
      
     }  	   
 }
