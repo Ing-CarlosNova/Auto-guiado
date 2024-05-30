@@ -39,14 +39,14 @@ void SEGUIDOR(int st1, int st2, int st3, int st4)
 {
   if((st1==0)&&(st4==1))//Los sensores del medio detectan el color negro.
     {
-    MOTOR1(150,1,0);
-    MOTOR2(150,0,0);
+    MOTOR1(150,0,0);
+    MOTOR2(150,1,0);
     delay(20);
     }
       else if((st1==1)&&(st4==0))//Los sensores del medio detectan el color negro.
       {
-        MOTOR1(150,0,0);
-        MOTOR2(150,1,0);
+        MOTOR1(150,1,0);
+        MOTOR2(150,0,0);
         delay(20);
       }
       else //Los sensores del medio detectan el color negro.
@@ -59,18 +59,3 @@ void SEGUIDOR(int st1, int st2, int st3, int st4)
       
  
 }
-
-void MOTOR1 (int PWM,bool IN1,bool IN2)
-{
-digitalWrite(9,IN1);
-digitalWrite(4,IN2);
-analogWrite(3,PWM);
-}
-
-void MOTOR2 (int PWM,bool IN3,bool IN4)
-{
-digitalWrite(6,IN3);
-digitalWrite(7,IN4);
-analogWrite(5,PWM);
-}
-
