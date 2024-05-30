@@ -1,8 +1,5 @@
 int cont=0;
-boolean  s1= false;
-boolean  s2= false;
-boolean  s3= false;
-boolean  s4= false;
+int  s1, s2,s3,s4;
 
 //,s2,s3,s4;//Variables de los sensores
 void setup() {
