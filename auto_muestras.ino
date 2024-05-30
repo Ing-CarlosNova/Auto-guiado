@@ -9,10 +9,6 @@ volatile long time;
 volatile bool State = false;
 long distance;
 
-
-
-
-
 //,s2,s3,s4;//Variables de los sensores
 void setup() {
   
