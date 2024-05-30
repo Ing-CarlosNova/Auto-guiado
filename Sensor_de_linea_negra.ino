@@ -1,5 +1,10 @@
 int cont=0;
-bool s1,s2,s3,s4;//Variables de los sensores
+boolean  s1= false;
+boolean  s2= false;
+boolean  s3= false;
+boolean  s4= false;
+
+//,s2,s3,s4;//Variables de los sensores
 void setup() {
   pinMode(9,OUTPUT);//IN1
   pinMode(3,OUTPUT);//PWM MOTOR 1
@@ -45,7 +50,6 @@ digitalWrite(7,IN4);
 analogWrite(5,PWM);
 }
 //
-
 void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
 {
 
