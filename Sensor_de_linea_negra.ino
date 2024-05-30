@@ -1,5 +1,5 @@
 int cont=0;
-int  s1, s2,s3,s4;
+int s1,s2,s3,s4 = 0;
 
 //,s2,s3,s4;//Variables de los sensores
 void setup() {
@@ -47,7 +47,7 @@ digitalWrite(7,IN4);
 analogWrite(5,PWM);
 }
 //
-void SEGUIDOR(bool st1,bool st2,bool st3,bool st4)
+void SEGUIDOR(int st1,int st2,int st3,int st4)
 {
 
   if((st2==1)&&(st3==1))//Los sensores detectan negro avanza
