@@ -62,16 +62,22 @@ void SEGUIDOR(int st1,int st2,int st3,int st4)
   if((st1==0)&&(st4==1))//Curva a la izquierda
     {
      //Corrección de Giro a la Derecha
-     MOTOR1(180,0,0);
-   	 MOTOR2(180,0,1);
+     MOTOR1(180,1,0);
+   	 MOTOR2(180,1,0);
      delay(300);
+     MOTOR1(180,0,1);
+   	 MOTOR2(180,0,0);
+     delay(300)
      
     }
   if((st1==1)&&(st4==0))//Curva a la izquierda
     {
      //Corrección de Giro a la Derecha
-     MOTOR1(180,0,1);
-   	 MOTOR2(180,0,0);
+     MOTOR1(180,1,0);
+   	 MOTOR2(180,1,0);
+     delay(300); 
+     MOTOR1(180,0,0);
+   	 MOTOR2(180,0,1);
      delay(300);
      
     }  	   
