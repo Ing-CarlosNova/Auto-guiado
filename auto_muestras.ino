@@ -32,10 +32,10 @@ void setup() {
   pinMode(5,OUTPUT);//PWM MOTOR 2
   pinMode(6,OUTPUT);//IN3
   pinMode(7,OUTPUT);//IN4
-  pinMode(s2,INPUT);
-  pinMode(s2,INPUT);
-  pinMode(s3,INPUT);//Sensor Derecha
-  pinMode(s4,INPUT);
+  pinMode(s1,INPUT); //sensor derecha
+  pinMode(s2,INPUT); //sensor centro derecho
+  pinMode(s3,INPUT);//sensor centro izquierdo
+  pinMode(s4,INPUT); // izquierdo
   pinMode(2, INPUT);//ECHO-INTERRUPCIÓN
   pinMode(8, OUTPUT);//TRIG
   Serial.begin(9600); 
