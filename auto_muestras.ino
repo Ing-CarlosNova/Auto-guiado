@@ -8,9 +8,19 @@ LiquidCrystal_I2C lcd(0x27,16,2);  //permite conectat LCD Y I2C
 volatile long time;
 volatile bool State = false;
 long distance;
+int cont_lineas=0;
+unsigned long tiempo1,tiempo2,tiempoSegundos;
+//fuerza 
+int FSR_PIN = A0;
+float VCC = 5.0; // Voltaje de alimentación del Arduino
+float R_DIV = 10000.0; // Valor de la resistencia de 10kΩ en ohmios
+float weight;
 
-
-
+const int numReadings = 10;
+float readings[numReadings]; // Array to store readings
+int readIndex = 0; // Index of the current reading
+float total = 0; // Running total
+float average = 0; // Average of the readings
 
 
 //,s2,s3,s4;//Variables de los sensores
@@ -34,8 +44,10 @@ void setup() {
   lcd.init();
   //Encender la luz de fondo.
   lcd.backlight();
-  // Escribimos el Mensaje en el LCD.
-  lcd.print("AUTO EVASOR");
+
+  for (int i = 0; i < numReadings; i++) {
+    readings[i] = 0;
+  }
   
 }
 
@@ -44,37 +56,38 @@ void loop() {
   if (State) {
     
     distance = time / 58.2; // Convertir a distancia en cm
-     
+    int fsrADC = analogRead(FSR_PIN);
+    MF01(fsrADC);
+     lcd_mensage(tiempoSegundos,cont,weight);
     if (distance<=15) { // Distancia limite para evasión de obstáculos
-      cont++;
-      lcd.setCursor(0, 1);
-      lcd.print("#Obj:");
-      lcd.print(cont);
+     
+      lcd_mensage(tiempoSegundos,cont,weight);
       SPEED_MOTOR();//Función para reducir la velocidad del motor.
       if(distance<=8)
       {
+         cont++;
         delay(1000);//Pausa para ajuste de giro a 90º DERECHA 
         MOTOR1(200,0,1); //MOTOR IZQUIERD
         MOTOR2(200,0,0); //MOTOR DERECHO
-        delay(1000);//Pausa para ir adelante
+        delay(500);//Pausa para ir adelante
         MOTOR1(200,1,0);  //ADELANTE
         MOTOR2(200,1,0);
         delay(1000); //PASUA PARA AJUSTAR 90 A IZQUIERDA
         MOTOR1(200,0,0); //IZQUIERDO
         MOTOR2(200,0,1); //DERECHO
-        delay(1000);//Pausa para ir adelante
+        delay(500);//Pausa para ir adelante
         MOTOR1(200,1,0);  //ADELANTE
         MOTOR2(200,1,0);
-        delay(1000); //PAUSA PAR APARA AJUSTAR 
+        delay(500); //PAUSA PAR APARA AJUSTAR 
         MOTOR1(200,0,0); // IZQUIERADA
         MOTOR2(200,0,1);
-        delay(1000);
+        delay(500);
         MOTOR1(200,1,0); //AVABZAR
         MOTOR2(200,1,0);
         delay(1000);//Pausa para ajuste de giro a 90º DERECHA 
         MOTOR1(200,0,1); //MOTOR IZQUIERD
         MOTOR2(200,0,0); //MOTOR DERECHO
-        delay(1000);
+        delay(500);
         MOTOR1(200,1,0); //AVABZAR
         MOTOR2(200,1,0);
 
@@ -91,8 +104,7 @@ void loop() {
   
   triggerMeasurement();
   delay(100); // Esperar un poco antes de la siguiente medición
-
-  
+ 
   v=digitalRead(s1);//Derecha
   v1=digitalRead(s2);//centro
   v2=digitalRead(s3);//centro
@@ -104,8 +116,6 @@ void loop() {
    Serial.println(v3);
    Serial.println("__");
    */
-  
-
 }
 
 
@@ -133,16 +143,16 @@ void echoISR() {
 
 void SEGUIDOR(int st1, int st2, int st3, int st4)
 {
-  if((st1==0)&&(st4==1))//Los sensores del medio detectan el color negro.
+  if(st4==1)//Los sensores del medio detectan el color negro.
     {
-    MOTOR1(150,0,0);
-    MOTOR2(150,1,0);
+    MOTOR1(150,1,0);
+    MOTOR2(150,0,0);
     delay(20);
     }
-      else if((st1==1)&&(st4==0))//Los sensores del medio detectan el color negro.
+      else if(st1==1)//Los sensores del medio detectan el color negro.
       {
-        MOTOR1(150,1,0);
-        MOTOR2(150,0,0);
+        MOTOR1(150,0,0);
+        MOTOR2(150,1,0);
         delay(20);
       }
       else //Los sensores del medio detectan el color negro.
@@ -152,6 +162,17 @@ void SEGUIDOR(int st1, int st2, int st3, int st4)
         delay(20);
 
       }
+  if ((st2==1)&&(st3==1))
+  {
+    
+    tiempo2 = millis();
+      if(tiempo2 > (tiempo1+1000))
+      {  //Si ha pasado 1 segundo ejecuta el IF
+        tiempo1 = millis(); //Actualiza el tiempo actual
+        tiempoSegundos = tiempo1/1000;
+        lcd_mensage(tiempoSegundos,cont,weight);
+      }
+  }
       
  
 }
@@ -179,4 +200,59 @@ void SPEED_MOTOR()
     MOTOR2(s,0,1);
     delay(16);
   }
+}
+
+void lcd_mensage(long t,int obj,float p)
+{
+lcd.setCursor(0,0);
+lcd.print("#Obj:");
+lcd.print(obj);
+lcd.setCursor(0,1);
+lcd.print("Time:");
+lcd.print(t);
+lcd.print("s"); 
+lcd.print("P=");
+lcd.print(p);
+lcd.print("Kg");
+}
+
+void MF01 (float pc)
+{
+   
+ 
+  total = total - readings[readIndex];
+  readings[readIndex] = analogRead(pc);
+  total = total + readings[readIndex];
+  readIndex = readIndex + 1;
+  if (readIndex >= numReadings) {
+    readIndex = 0;
+  }
+  average = total / numReadings;
+ 
+  float fsrV =  average * (VCC / 1023.0);
+  float fsrR = R_DIV * (VCC / fsrV - 1.0);
+  float force = 0; 
+
+  if (fsrR <= 600) {
+    force = (pc - 600) / 6000; // Esto depende del modelo y debe ajustarse
+  } else {
+    force = (pc - 600) / 250; // Esto depende del modelo y debe ajustarse
+  }
+
+  // Convertir la fuerza de Newtons a kilogramos (1 Newton = 0.10197 kg)
+  weight = force * 0.10197;
+    // Imprimir los resultados
+  /*Serial.print("ADC Value: ");
+  Serial.print(fsrADC);
+  Serial.print("\tVoltage: ");
+  Serial.print(fsrV);
+  Serial.print(" V\tResistance: ");
+  Serial.print(fsrR);
+  Serial.print(" ohms\tForce: ");
+  Serial.print(force);
+  Serial.print(" N\tWeight: ");*/
+  Serial.print(weight);
+  Serial.println(" kg");
+
+  delay(500);
 }
