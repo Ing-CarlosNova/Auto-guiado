@@ -22,7 +22,6 @@ int readIndex = 0; // Index of the current reading
 float total = 0; // Running total
 float average = 0; // Average of the readings
 
-
 //,s2,s3,s4;//Variables de los sensores
 void setup() {
   
@@ -117,7 +116,6 @@ void loop() {
    Serial.println("__");
    
 }
-
 
 void triggerMeasurement() {
   digitalWrite(8, LOW);
