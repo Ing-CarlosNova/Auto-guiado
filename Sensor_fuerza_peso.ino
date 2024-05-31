@@ -2,16 +2,44 @@ const int FSR_PIN = A0;
 const float VCC = 5.0; // Voltaje de alimentación del Arduino
 const float R_DIV = 10000.0; // Valor de la resistencia de 10kΩ en ohmios
 
+const int numReadings = 10;
+float readings[numReadings]; // Array to store readings
+int readIndex = 0; // Index of the current reading
+float total = 0; // Running total
+float average = 0; // Average of the readings
+
+
 void setup() {
   Serial.begin(9600);
+  //realiza un llenado de vector con valores de o
+  for (int i = 0; i < numReadings; i++) {
+    readings[i] = 0;
+  }
 }
 
 void loop() {
+
+   total = total - readings[readIndex];
+  // Read from the sensor:
+  readings[readIndex] = analogRead(FSR_PIN);
+  // Add the reading to the total:
+  total = total + readings[readIndex];
+  // guarda el valor del sensor en la posición del vector el 
+  readIndex = readIndex + 1;
+
+ if (readIndex >= numReadings) {
+    readIndex = 0;
+  }
+
+  // Calculate un promedio de 10 datos leidos para el peso
+  average = total / numReadings;
+
+
   // Leer el valor del FSR
-  int fsrADC = analogRead(FSR_PIN);
+  //int fsrADC = analogRead(FSR_PIN);
 
   // Convertir el valor ADC a voltaje
-  float fsrV = fsrADC * (VCC / 1023.0);
+  float fsrV = average * (VCC / 1023.0);
 
   // Calcular la resistencia del FSR
   float fsrR = R_DIV * (VCC / fsrV - 1.0);
@@ -29,7 +57,7 @@ void loop() {
 
   // Imprimir los resultados
   Serial.print("ADC Value: ");
-  Serial.print(fsrADC);
+  Serial.print(average);
   Serial.print("\tVoltage: ");
   Serial.print(fsrV);
   Serial.print(" V\tResistance: ");
