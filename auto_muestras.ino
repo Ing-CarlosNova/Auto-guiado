@@ -181,9 +181,8 @@ void SEGUIDOR(int st1, int st2, int st3, int st4)
           
         }
       }
-     MOTOR1(0,0,0);
-     MOTOR2(0,0,0);
-  }
+
+  } 
       
  
 }
