@@ -1,6 +1,7 @@
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 int cont=0;
+int cont1=0;
 int s1=10,s2=11,s3=12,s4=13;
 int v, v1, v2, v3;
 LiquidCrystal_I2C lcd(0x27,16,2);  //permite conectat LCD Y I2C
@@ -22,7 +23,6 @@ int readIndex = 0; // Index of the current reading
 float total = 0; // Running total
 float average = 0; // Average of the readings
 
-
 //,s2,s3,s4;//Variables de los sensores
 void setup() {
   
@@ -32,10 +32,10 @@ void setup() {
   pinMode(5,OUTPUT);//PWM MOTOR 2
   pinMode(6,OUTPUT);//IN3
   pinMode(7,OUTPUT);//IN4
-  pinMode(s2,INPUT);
-  pinMode(s2,INPUT);
-  pinMode(s3,INPUT);//Sensor Derecha
-  pinMode(s4,INPUT);
+  pinMode(s1,INPUT); //sensor derecha
+  pinMode(s2,INPUT); //sensor centro derecho
+  pinMode(s3,INPUT);//sensor centro izquierdo
+  pinMode(s4,INPUT); // izquierdo
   pinMode(2, INPUT);//ECHO-INTERRUPCIÓN
   pinMode(8, OUTPUT);//TRIG
   Serial.begin(9600); 
@@ -53,13 +53,16 @@ void setup() {
 
 void loop() {
   
-  if (State) {
+  if (State) 
+  {
     
     distance = time / 58.2; // Convertir a distancia en cm
     int fsrADC = analogRead(FSR_PIN);
     MF01(fsrADC);
+
      lcd_mensage(tiempoSegundos,cont,weight);
-    if (distance<=15) { // Distancia limite para evasión de obstáculos
+    if (distance<=15) 
+    { // Distancia limite para evasión de obstáculos
      
       lcd_mensage(tiempoSegundos,cont,weight);
       SPEED_MOTOR();//Función para reducir la velocidad del motor.
@@ -67,45 +70,46 @@ void loop() {
       {
          cont++;
         delay(1000);//Pausa para ajuste de giro a 90º DERECHA 
-        MOTOR1(200,0,1); //MOTOR IZQUIERD
-        MOTOR2(200,0,0); //MOTOR DERECHO
+        MOTOR1(180,0,1); //MOTOR IZQUIERD
+        MOTOR2(180,0,0); //MOTOR DERECHO
         delay(500);//Pausa para ir adelante
-        MOTOR1(200,1,0);  //ADELANTE
-        MOTOR2(200,1,0);
+        MOTOR1(180,1,0);  //ADELANTE
+        MOTOR2(180,1,0);
         delay(1000); //PASUA PARA AJUSTAR 90 A IZQUIERDA
-        MOTOR1(200,0,0); //IZQUIERDO
-        MOTOR2(200,0,1); //DERECHO
+        MOTOR1(180,0,0); //IZQUIERDO
+        MOTOR2(180,0,1); //DERECHO
         delay(500);//Pausa para ir adelante
-        MOTOR1(200,1,0);  //ADELANTE
-        MOTOR2(200,1,0);
+        MOTOR1(180,1,0);  //ADELANTE
+        MOTOR2(180,1,0);
         delay(500); //PAUSA PAR APARA AJUSTAR 
-        MOTOR1(200,0,0); // IZQUIERADA
-        MOTOR2(200,0,1);
+        MOTOR1(180,0,0); // IZQUIERADA
+        MOTOR2(180,0,1);
         delay(500);
-        MOTOR1(200,1,0); //AVABZAR
-        MOTOR2(200,1,0);
+        MOTOR1(180,1,0); //AVABZAR
+        MOTOR2(180,1,0);
         delay(1000);//Pausa para ajuste de giro a 90º DERECHA 
-        MOTOR1(200,0,1); //MOTOR IZQUIERD
-        MOTOR2(200,0,0); //MOTOR DERECHO
+        MOTOR1(180,0,1); //MOTOR IZQUIERD
+        MOTOR2(180,0,0); //MOTOR DERECHO
         delay(500);
-        MOTOR1(200,1,0); //AVABZAR
-        MOTOR2(200,1,0);
-
+        MOTOR1(180,1,0); //AVABZAR
+        MOTOR2(180,1,0);
       }
     } 
-    else {
+    else 
+    {
      //Avance hacia adelante del motor, cuando no existe obstaculo 89% PWM.
       MOTOR1(180,1,0);
       MOTOR2(180,1,0);
       SEGUIDOR(v,v1,v2,v3);
     }
     State = false;
+   
+    
   }
   
   triggerMeasurement();
   delay(100); // Esperar un poco antes de la siguiente medición
-
-  
+ 
   v=digitalRead(s1);//Derecha
   v1=digitalRead(s2);//centro
   v2=digitalRead(s3);//centro
@@ -117,10 +121,7 @@ void loop() {
    Serial.println(v3);
    Serial.println("__");
    */
-  
-
 }
-
 
 void triggerMeasurement() {
   digitalWrite(8, LOW);
@@ -148,14 +149,14 @@ void SEGUIDOR(int st1, int st2, int st3, int st4)
 {
   if(st4==1)//Los sensores del medio detectan el color negro.
     {
-    MOTOR1(150,1,0);
+    MOTOR1(150,0,0);
     MOTOR2(0,0,0);
     delay(20);
     }
       else if(st1==1)//Los sensores del medio detectan el color negro.
       {
         MOTOR1(0,0,0);
-        MOTOR2(150,1,0);
+        MOTOR2(150,0,0);
         delay(20);
       }
       else //Los sensores del medio detectan el color negro.
@@ -169,12 +170,19 @@ void SEGUIDOR(int st1, int st2, int st3, int st4)
   {
     
     tiempo2 = millis();
+    cont1=cont1+1;  
+    while(cont1<4)
+    {
       if(tiempo2 > (tiempo1+1000))
-      {  //Si ha pasado 1 segundo ejecuta el IF
-        tiempo1 = millis(); //Actualiza el tiempo actual
-        tiempoSegundos = tiempo1/1000;
-        lcd_mensage(tiempoSegundos,cont,weight);
+        {  //Si ha pasado 1 segundo ejecuta el IF
+          tiempo1 = millis(); //Actualiza el tiempo actual
+          tiempoSegundos = tiempo1/1000;
+          lcd_mensage(tiempoSegundos,cont,weight);
+          
+        }
       }
+     MOTOR1(0,0,0);
+     MOTOR2(0,0,0);
   }
       
  
@@ -221,8 +229,6 @@ lcd.print("Kg");
 
 void MF01 (float pc)
 {
-   
- 
   total = total - readings[readIndex];
   readings[readIndex] = analogRead(pc);
   total = total + readings[readIndex];
@@ -259,5 +265,3 @@ void MF01 (float pc)
 
   delay(500);
 }
-
-
