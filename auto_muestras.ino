@@ -1,6 +1,7 @@
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 int cont=0;
+int cont=0;
 int s1=10,s2=11,s3=12,s4=13;
 int v, v1, v2, v3;
 LiquidCrystal_I2C lcd(0x27,16,2);  //permite conectat LCD Y I2C
@@ -99,6 +100,8 @@ void loop() {
       SEGUIDOR(v,v1,v2,v3);
     }
     State = false;
+   
+    }
   }
   
   triggerMeasurement();
@@ -164,12 +167,18 @@ void SEGUIDOR(int st1, int st2, int st3, int st4)
   {
     
     tiempo2 = millis();
+    cont1++;  
+    while(cont1<4){
       if(tiempo2 > (tiempo1+1000))
-      {  //Si ha pasado 1 segundo ejecuta el IF
-        tiempo1 = millis(); //Actualiza el tiempo actual
-        tiempoSegundos = tiempo1/1000;
-        lcd_mensage(tiempoSegundos,cont,weight);
+        {  //Si ha pasado 1 segundo ejecuta el IF
+          tiempo1 = millis(); //Actualiza el tiempo actual
+          tiempoSegundos = tiempo1/1000;
+          lcd_mensage(tiempoSegundos,cont,weight);
+          
+        }
       }
+     MOTOR1(0,0,0);
+     MOTOR2(0,0,0);
   }
       
  
@@ -216,8 +225,6 @@ lcd.print("Kg");
 
 void MF01 (float pc)
 {
-   
- 
   total = total - readings[readIndex];
   readings[readIndex] = analogRead(pc);
   total = total + readings[readIndex];
