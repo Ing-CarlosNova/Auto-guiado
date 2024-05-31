@@ -1,60 +1,44 @@
-int fsrPin = 0;     // the FSR and 10K pulldown are connected to a0
-int fsrReading;     // the analog reading from the FSR resistor divider
-int fsrVoltage;     // the analog reading converted to voltage
+const int FSR_PIN = A0;
+const float VCC = 5.0; // Voltaje de alimentación del Arduino
+const float R_DIV = 10000.0; // Valor de la resistencia de 10kΩ en ohmios
 
-unsigned long fsrResistance;  // The voltage converted to resistance
-unsigned long fsrConductance; 
-long fsrForce;       // Finally, the resistance converted to force
-long peso; 
-
-void setup(void) {
-  Serial.begin(9600);   // We'll send debugging information via the Serial monitor
+void setup() {
+  Serial.begin(9600);
 }
- 
-void loop(void) {
-  fsrReading = analogRead(fsrPin);  
-  Serial.print("Analog reading = ");
-  Serial.println(fsrReading);
- 
-  // analog voltage reading ranges from about 0 to 1023 which maps to 0V to 5V (= 5000mV)
-  fsrVoltage = map(fsrReading, 0, 1023, 0, 5000);
-  Serial.print("Voltage reading in mV = ");
-  Serial.println(fsrVoltage);  
- 
-  if (fsrVoltage == 0) {
-    Serial.println("No pressure");  
+
+void loop() {
+  // Leer el valor del FSR
+  int fsrADC = analogRead(FSR_PIN);
+
+  // Convertir el valor ADC a voltaje
+  float fsrV = fsrADC * (VCC / 1023.0);
+
+  // Calcular la resistencia del FSR
+  float fsrR = R_DIV * (VCC / fsrV - 1.0);
+
+  // Calcular la fuerza en Newtons (esto depende del modelo específico del FSR)
+  float force = 0;
+  if (fsrR <= 600) {
+    force = (fsrR - 600) / 6000; // Esto depende del modelo y debe ajustarse
   } else {
-    // The voltage = Vcc * R / (R + FSR) where R = 10K and Vcc = 5V
-    // so FSR = ((Vcc - V) * R) / V        yay math!
-    fsrResistance = 5000 - fsrVoltage;     // fsrVoltage is in millivolts so 5V = 5000mV
-    fsrResistance *= 10000;                // 10K resistor
-    fsrResistance /= fsrVoltage;
-    Serial.print("FSR resistance in ohms = ");
-    Serial.println(fsrResistance);
- 
-    fsrConductance = 1000000;           // we measure in micromhos so 
-    fsrConductance /= fsrResistance;
-    Serial.print("Conductance in microMhos: ");
-    Serial.println(fsrConductance);
- 
-    // Use the two FSR guide graphs to approximate the force
-    if (fsrConductance <= 1000) {
-      fsrForce = fsrConductance / 80;
-      peso = fsrForce*(0.101967564)*1000;
-      Serial.print("Force in Newtons: ");
-      Serial.println(fsrForce);
-      Serial.print("Peso: "); 
-      Serial.println(peso);    
-    } else {
-      fsrForce = fsrConductance - 1000;
-      fsrForce /= 30;
-      peso = fsrForce*(101.97)*1;
-      Serial.print("Force in Newtons: ");
-      Serial.println(fsrForce); 
-      Serial.print("Peso: "); 
-      Serial.println(peso);            
-    }
+    force = (fsrR - 600) / 250; // Esto depende del modelo y debe ajustarse
   }
-  Serial.println("--------------------");
-  delay(1000);
+
+  // Convertir la fuerza de Newtons a kilogramos (1 Newton = 0.10197 kg)
+  float weight = force * 0.10197;
+
+  // Imprimir los resultados
+  Serial.print("ADC Value: ");
+  Serial.print(fsrADC);
+  Serial.print("\tVoltage: ");
+  Serial.print(fsrV);
+  Serial.print(" V\tResistance: ");
+  Serial.print(fsrR);
+  Serial.print(" ohms\tForce: ");
+  Serial.print(force);
+  Serial.print(" N\tWeight: ");
+  Serial.print(weight);
+  Serial.println(" kg");
+
+  delay(500);
 }
