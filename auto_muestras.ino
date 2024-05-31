@@ -67,29 +67,29 @@ void loop() {
       {
          cont++;
         delay(1000);//Pausa para ajuste de giro a 90º DERECHA 
-        MOTOR1(200,0,1); //MOTOR IZQUIERD
-        MOTOR2(200,0,0); //MOTOR DERECHO
+        MOTOR1(180,0,1); //MOTOR IZQUIERD
+        MOTOR2(180,0,0); //MOTOR DERECHO
         delay(500);//Pausa para ir adelante
-        MOTOR1(200,1,0);  //ADELANTE
-        MOTOR2(200,1,0);
+        MOTOR1(180,1,0);  //ADELANTE
+        MOTOR2(180,1,0);
         delay(1000); //PASUA PARA AJUSTAR 90 A IZQUIERDA
-        MOTOR1(200,0,0); //IZQUIERDO
-        MOTOR2(200,0,1); //DERECHO
+        MOTOR1(180,0,0); //IZQUIERDO
+        MOTOR2(180,0,1); //DERECHO
         delay(500);//Pausa para ir adelante
-        MOTOR1(200,1,0);  //ADELANTE
-        MOTOR2(200,1,0);
+        MOTOR1(180,1,0);  //ADELANTE
+        MOTOR2(180,1,0);
         delay(500); //PAUSA PAR APARA AJUSTAR 
-        MOTOR1(200,0,0); // IZQUIERADA
-        MOTOR2(200,0,1);
+        MOTOR1(180,0,0); // IZQUIERADA
+        MOTOR2(180,0,1);
         delay(500);
-        MOTOR1(200,1,0); //AVABZAR
-        MOTOR2(200,1,0);
+        MOTOR1(180,1,0); //AVABZAR
+        MOTOR2(180,1,0);
         delay(1000);//Pausa para ajuste de giro a 90º DERECHA 
-        MOTOR1(200,0,1); //MOTOR IZQUIERD
-        MOTOR2(200,0,0); //MOTOR DERECHO
+        MOTOR1(180,0,1); //MOTOR IZQUIERD
+        MOTOR2(180,0,0); //MOTOR DERECHO
         delay(500);
-        MOTOR1(200,1,0); //AVABZAR
-        MOTOR2(200,1,0);
+        MOTOR1(180,1,0); //AVABZAR
+        MOTOR2(180,1,0);
 
       }
     } 
@@ -110,12 +110,12 @@ void loop() {
   v2=digitalRead(s3);//centro
   v3=digitalRead(s4);//izquierda
 
-  /* Serial.println(v);
+   Serial.println(v);
    Serial.println(v1);
    Serial.println(v2);
    Serial.println(v3);
    Serial.println("__");
-   */
+   
 }
 
 
@@ -145,14 +145,14 @@ void SEGUIDOR(int st1, int st2, int st3, int st4)
 {
   if(st4==1)//Los sensores del medio detectan el color negro.
     {
-    MOTOR1(150,1,0);
-    MOTOR2(150,0,0);
+    MOTOR1(150,0,0);
+    MOTOR2(0,0,0);
     delay(20);
     }
       else if(st1==1)//Los sensores del medio detectan el color negro.
       {
-        MOTOR1(150,0,0);
-        MOTOR2(150,1,0);
+        MOTOR1(0,0,0);
+        MOTOR2(150,0,0);
         delay(20);
       }
       else //Los sensores del medio detectan el color negro.
